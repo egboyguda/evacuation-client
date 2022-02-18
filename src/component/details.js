@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { Button, Card, Icon } from "react-native-elements";
 
-const Details = () => {
+const Details = ({ evac }) => {
   return (
     <View>
       <Card>
@@ -10,9 +10,11 @@ const Details = () => {
           <Text style={{ color: "grey" }}>x</Text>
         </View>
         <View>
-          <Text>EVACUATION NAME</Text>
-          <Text>address</Text>
-          <Text>capacity</Text>
+          <Text>Name: {evac.name}</Text>
+          <Text>Address: {evac.address}</Text>
+          <Text>
+            Capacity: {evac.evacuees.length}/{evac.capacity}
+          </Text>
           <View style={styles.buttonContainer}>
             <Button
               title={"Direction"}

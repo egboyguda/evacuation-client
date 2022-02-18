@@ -1,14 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
 import Map from "../component/mapView";
 import Details from "../component/details";
+import useDetails from "../hooks/useDetails";
+
 const MainScreen = ({ navigation }) => {
+  const [evac, setEvac] = useState(null);
+  const [open, setOpen] = useDetails();
+
   return (
     <View style={styles.container}>
-      <Map />
-      <View style={styles.details}>
-        <Details />
-      </View>
+      <Map
+        openDetails={(val) => {
+          setOpen(val);
+        }}
+        filterData={(val) => {
+          setEvac(val);
+        }}
+      />
+      {open ? (
+        <View style={styles.details}>
+          <Details evac={evac} />
+        </View>
+      ) : null}
     </View>
   );
 };
