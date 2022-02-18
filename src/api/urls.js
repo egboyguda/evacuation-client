@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //https://evacuation-uep.herokuapp.com/
 const instance = axios.create({
-  baseURL: 'http://192.168.1.61:3000',
+  baseURL: 'https://evacuation-uep.herokuapp.com',
 });
 
 //n dd tanan na request maagi muna dd cn na config
