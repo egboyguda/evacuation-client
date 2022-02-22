@@ -1,14 +1,15 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider as ApiProvider } from './src/context/apiContext';
-import MainStack from './src/navigation/mainStack';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider as ApiProvider } from "./src/context/apiContext";
+import MainStack from "./src/navigation/mainStack";
+import { Provider as LocationProvider } from "./src/context/locationContext";
 const Stack = createNativeStackNavigator();
 App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='Map' component={MainStack} />
+        <Stack.Screen name="Map" component={MainStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -16,8 +17,10 @@ App = () => {
 
 export default () => {
   return (
-    <ApiProvider>
-      <App />
-    </ApiProvider>
+    <LocationProvider>
+      <ApiProvider>
+        <App />
+      </ApiProvider>
+    </LocationProvider>
   );
 };
