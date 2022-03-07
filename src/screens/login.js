@@ -2,21 +2,25 @@ import React from "react";
 import { View,StyleSheet,Image,Text, TouchableOpacity } from "react-native";
 import { Button,Input } from "react-native-elements";
 import Logo from "../component/logo";
+
 const Login = ({navigation})=>{
+  
     return(
 
         <View style={styles.container}>
         <Logo/>
+      
         <Input
             label="Email"
-            placeholder="/>"
+            placeholder=" Enter Email"
             leftIcon={{ type: "font-awesome", name: "envelope" }}
             onChangeText={()=>{}}
            
         />
+     
         <Input
             label="Password"
-            placeholder="/>"
+            placeholder=" Enter Password"
             leftIcon={{ type: "font-awesome", name: "lock" }}
             onChangeText={()=>{}}
         
@@ -80,7 +84,8 @@ const styles = StyleSheet.create({
     
         color:'#00a680'
 
-    }
+    },
+  
 
 })
 export default Login;

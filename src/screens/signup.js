@@ -1,29 +1,56 @@
-import React from "react";
+import React ,{useState,useContext}from "react";
 import { View,Image ,StyleSheet, TouchableOpacity} from "react-native";
 import { Button, Input ,Text} from "react-native-elements";
 import Logo from "../component/logo";
+import useEmailValidation from "../hooks/useEmailValidation";
+import { Context as AuthContext } from "../context/authContext";
 const SignUp = ({ navigation }) => {
+    const[validate,msg] = useEmailValidation();
+    const { state,signup } = useContext(AuthContext);
+    const [email,setEmail]=useState('');
+    const [name,setName]=useState('');
+    const [password,setPassword]=useState('');
+    const [errMsg,setErr] = useState(null)
+
     return(
         <View style={styles.container}>
-        {/*add image center*/}
+     
         <Logo/>
-        <Text style={styles.title}>Sign Up</Text>
+        {/*remove buttom padding margin of email input*/}
+        <Input
+            placeholder="Enter Full Name"
+            leftIcon={{ type: "font-awesome", name: "user" }}
+            leftIconContainerStyle={{ marginLeft: 10 }}
+            
+    
+            onChangeText={(text)=>setName(text)}
+            
+        />
         <Input
             label="Email"
-            placeholder="/>"
+            placeholder=" Enter Email"
             leftIcon={{ type: "font-awesome", name: "envelope" }}
-            onChangeText={()=>{}}
+          
+            onChangeText={(val)=>{
+                validate(val);
+                setEmail(val);
+            }}
+            
             />
+        {/*add error text below email input if email is not valid*/}
+        {msg && <Text style={styles.errMsg}>{msg}</Text>}
         <Input
             label="Password"
-            placeholder="/>"
+            placeholder=" Enter Password"
             leftIcon={{ type: "font-awesome", name: "lock" }}
-            onChangeText={()=>{}}
+            onChangeText={(val)=>{
+                setPassword(val);
+            }}
             secureTextEntry
             />
         <Input
             label="Confirm Password"
-            placeholder="/>"
+            placeholder=" Enter Password"
             leftIcon={{ type: "font-awesome", name: "lock" }}
             onChangeText={()=>{}}
             secureTextEntry
@@ -36,7 +63,9 @@ const SignUp = ({ navigation }) => {
   
         <Button
             title="Sign Up"
-            onPress={()=>{}}
+            onPress={()=>{
+                signup({email,password,name});
+            }}
             buttonStyle={{
                 //backgroundcolor green
                 backgroundColor: "#00a680",
@@ -71,6 +100,14 @@ const styles = StyleSheet.create({
         marginTop:10,
         fontWeight:'bold'
     },
-    
+    errMsg:{
+        color:'red',
+        //no margin top
+        marginTop:0,
+        
+        fontSize:10,
+    },
+    //smooth edges input
+
 })
 export default SignUp;

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider as ApiProvider } from "./src/context/apiContext";
 import MainStack from "./src/navigation/mainStack";
 import { Provider as LocationProvider } from "./src/context/locationContext";
+import { Provider as AuthProvider } from "./src/context/authContext";
 import LoginStack from "./src/navigation/loginStack";
 const Stack = createNativeStackNavigator();
 App = () => {
@@ -21,9 +22,11 @@ App = () => {
 export default () => {
   return (
     <LocationProvider>
+      <AuthProvider>
       <ApiProvider>
         <App />
       </ApiProvider>
+      </AuthProvider>
     </LocationProvider>
   );
 };
