@@ -7,9 +7,8 @@ export default () => {
   const [evacuees, setEvacuees] = useState([]);
 
   const filter = (val) => {
-    console.log(val);
+    //onsole.log(val);
     //const filtered = state.evacuees.filter((evacuee) => evacuee.id === id);
-
     //setEvacuees(filtered[0]);
   };
 

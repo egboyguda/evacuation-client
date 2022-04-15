@@ -1,8 +1,8 @@
-import axios from 'axios';
-import  AsyncStorage  from '@react-native-async-storage/async-storage';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 //https://evacuation-uep.herokuapp.com/
 const instance = axios.create({
-  baseURL: 'http://192.168.1.61:3000',
+  baseURL: "https://dfssd232.herokuapp.com",
 });
 
 //n dd tanan na request maagi muna dd cn na config
@@ -10,7 +10,7 @@ const instance = axios.create({
 //https://evacuation-uep.herokuapp.com
 instance.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem('token');
+    const token = await AsyncStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
